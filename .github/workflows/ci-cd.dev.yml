@@ -30,10 +30,12 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USERNAME }}
+          rm: true
+          overwrite: true
           allow_any_hosts: true # Позволяет подключаться даже если хост неизвестен OpenSSH
           ssh_known_hosts: false # Игнорирует проверку known hosts
           clean_target: true  # Очищаем целевой каталог перед отправкой файлов
-          source: "./dist/*"
+          source: "dist/*"
           target: "~/tg-tma/"
 
 
