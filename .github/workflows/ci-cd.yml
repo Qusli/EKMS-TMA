@@ -28,7 +28,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PUB_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USERNAME }}
           allow_any_hosts: true # Позволяет подключаться даже если хост неизвестен OpenSSH
           ssh_known_hosts: false # Игнорирует проверку known hosts
