@@ -6,6 +6,6 @@
   <h1>Hello world</h1>
 </template>
 
-<style scoped>
+<style lang="scss" module="$s">
 
 </style>
