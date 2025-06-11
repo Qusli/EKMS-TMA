@@ -7,8 +7,8 @@ const appStore = useAppStore()
 const themeStore = useThemeStore()
 
 // hooks
-onMounted(() => {
-  appStore.init()
+onMounted(async () => {
+  await appStore.init()
 
   if (!appStore.userEmpty) {
     themeStore.init()
@@ -17,9 +17,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Шаблон для управления сервером майнкрафта -->
-  <ServerTemplate v-if="!appStore.userEmpty" />
 
-  <!-- Шаблон для отображения ошибки инициализации -->
-  <TelegramInitErrorTemplate v-else />
+  <template v-if="!appStore.loading">
+    <!-- Шаблон для управления сервером майнкрафта -->
+    <ServerTemplate v-if="!appStore.userEmpty && appStore.accessed" />
+
+    <!-- Шаблон для отображения ошибки инициализации -->
+    <TelegramInitErrorTemplate v-else />
+  </template>
+
+  <template v-else>
+
+  </template>
+
 </template>
