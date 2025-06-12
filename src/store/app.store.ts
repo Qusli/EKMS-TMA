@@ -32,7 +32,10 @@ export const useAppStore = defineStore("app-store", {
                 this.user = user
             } 
             
-            if (!user) return;
+            if (!user) {
+                this.loading = false
+                return
+            };
 
             const [accessed] = await WhitelistApi.userInWhitelist(user.id)
 
