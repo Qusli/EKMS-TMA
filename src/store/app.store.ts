@@ -30,9 +30,9 @@ export const useAppStore = defineStore("app-store", {
 
             if (user && user.id && !user.is_bot) {
                 this.user = user
-            } else {
-                throw new Error("User not found")
-            }
+            } 
+            
+            if (!user) return;
 
             const [accessed] = await WhitelistApi.userInWhitelist(user.id)
 
