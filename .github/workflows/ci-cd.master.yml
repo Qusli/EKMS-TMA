@@ -1,0 +1,45 @@
+name: Build and deploy on dev
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use node.js
+        uses: actions/setup-node@v4 
+        with:
+          node-version: '23.x'
+
+      - name: Install packages
+        run: npm install
+
+      - name: Build project
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: npm run build
+
+      - name: Deploy on server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+          rm: true
+          allow_any_hosts: true # Позволяет подключаться даже если хост неизвестен OpenSSH
+          ssh_known_hosts: false # Игнорирует проверку known hosts
+          clean_target: true  # Очищаем целевой каталог перед отправкой файлов
+          strip_components: 1
+          source: "dist/*"
+          target: "~/tg-tma-prod/"
+
+
+
+
