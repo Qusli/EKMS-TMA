@@ -5,7 +5,7 @@ import { api } from "../api"
 export const WhitelistApi = {
     async userInWhitelist(userId: number): Promise<[ ok: boolean, error: AxiosError | null ]> {
         try {
-            const ok = await api.post("/whitelist/", null, {
+            const ok = await api.post("/whitelist", null, {
                 params: {
                     userId
                 }

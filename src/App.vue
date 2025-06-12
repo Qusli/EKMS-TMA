@@ -27,7 +27,7 @@ onMounted(async () => {
   </template>
 
   <template v-else>
-
+    <h1>Загрузка...</h1>
   </template>
 
 </template>

@@ -5,9 +5,11 @@ const appStore = useAppStore()
 </script>
 
 <template>
-    <h1>Привет {{ appStore.user!.first_name }}</h1>
+    <h1 :class="$s.title">Привет {{ appStore.user!.first_name }}!</h1>
 </template>
 
 <style lang='scss' module='$s'>
-
+.title {
+    margin-bottom: functions.rem(12px);
+}
 </style>

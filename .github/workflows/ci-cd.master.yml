@@ -1,8 +1,8 @@
 name: Build and deploy on dev
 
 on:
-  push: 
-    branches: [dev]
+  pull_request:
+    branches: [master]
 
 jobs:
   build-and-deploy:
@@ -38,7 +38,7 @@ jobs:
           clean_target: true  # Очищаем целевой каталог перед отправкой файлов
           strip_components: 1
           source: "dist/*"
-          target: "~/tg-tma-dev/"
+          target: "~/tg-tma-prod/"
 
 
 
